@@ -15,7 +15,16 @@
 	<div class="comment">[[COMMENT]]</div>
 	
 	<div class="post-fotter">
-		<!-- URLコピーボタン -->
+
+		<!-- Fediverse（ActivityPubサーバー）に
+			本文1行目とURLを投稿 -->
+		<div class="fedibuzzer-btn">
+			<a href="https://fedibuzzer.ajr-news.com/share?text=[[COMMENT:TITLE]]  [[PERMAURL:FULL]]" target="_blank">
+				<img src="https://fedibuzzer.ajr-news.com/badges/share-to-fediverse_v1.svg" alt="Fediverseに共有" style="display:inline-block;height:24px;width:auto;" />
+			</a>
+		</div>
+
+		<!-- URLコピーボタン　タグを埋めればテキストの投稿もできる -->
 		<button class="post-share" data-clipboard-text="[[PERMAURL:FULL]]">
 			URLをコピー<i class="fa-solid fa-copy"></i>
 		</button>
