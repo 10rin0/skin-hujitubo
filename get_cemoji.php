@@ -1,5 +1,5 @@
 <?php
-// ここに許可するドメイン（自分のサイトのURL）を追加
+// ここに許可するドメイン（自分のサイトのURL）を追加してください
 $allowedDomain = 'https://example.com';
 
 // Refererヘッダーを取得

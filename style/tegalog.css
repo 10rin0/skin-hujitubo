@@ -1,4 +1,4 @@
-@import url(color.css);
+@import url(color.css);/*配色設定の読み込み*/
 
 /* -------------------- 先に好みで設定したほうが良さそうな装飾群 -------------------- */
 /*  汎用装飾(てがろぐ専用記法で書かれた文字）  */
@@ -58,8 +58,6 @@
 /* L:リストの指定(Line) */
 .decorationL {}
 
-
-
 /* 続きを読むリンク（ボタン） */
 /* ボタン枠の装飾(共通) */
 a.readmorebutton {
@@ -71,13 +69,11 @@ a.readmorebutton {
     margin: 10px 2px;
     border-radius: 4px;
     box-sizing: border-box;
-
 }
 
 /* ボタンにマウスが載った際の装飾(共通) */
 a.readmorebutton:hover {
     background-color: var(--nc-lk-2);
-
 }
 
 /* 開く（続きを読む）ボタン専用の装飾 */
@@ -224,7 +220,6 @@ a.prevlink, a.nextlink {
     border-radius: 4px;
     box-sizing: border-box;
     display: inline-block;
-
 }
 
 /*次のページに行くリンク*/
@@ -476,15 +471,12 @@ aside {
     font-size: 1.2em;
 }
 
-
-
 .hujitubo_aside_wrap :nth-child(1) {
     padding: 0 3px;
 }
 
 
 /* ---------------------- フッターエリアの設定 ---------------------- */
-
 footer {
     display: flex;
     flex-wrap: wrap;
@@ -666,8 +658,8 @@ input#hujitubo_ce {
 a.postidlink+div {
     margin: 0.5em 0.2em 0.5em 1em;
     padding: 1.5rem;
-	background: var(--nc-bg-2);
-	border-left: 5px solid var(--nc-bg-3);
+    background: var(--nc-bg-2);
+    border-left: 5px solid var(--nc-bg-3);
 }
 
 /* ---------------------- ダークモードを適用 ---------------------- */
@@ -718,3 +710,5 @@ a.postidlink+div {
         opacity: 0;
     }
 }
+
+/*EOF*/

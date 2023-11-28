@@ -28,6 +28,10 @@
 </head>
 
 <body class="[[SITUATION:CLASS]]">
+	<!-- ローディングアニメ（ページの読み込みに表示） -->
+	<div id="loading">
+		<div class="load_anime"></div>
+	</div>
 	<header>
 		<h2><a href="[[HOME:URL:FULL]]">[[FREE:TITLE:MAIN]]</a></h2>
 		<div class="icon-img">
@@ -185,6 +189,7 @@
 						var fileBaseName = filename.split('.').slice(0, -1).join('.');
 
 						// 画像の<img>要素を作成し、alt属性を設定して<div class="cemojipicker">に追加
+							// 必要な場合これもphpファイルからの相対リンクで指定する
 						var imgSrc = 'emoji/' + filename;
 
 						// alt属性を指定された形式に設定
@@ -304,9 +309,6 @@
 	</script>
 	
 	<!-- ローディング画面 -->
-	<div id="loading">
-		<div class="load_anime"></div>
-	</div>
 	<script>
 		window.onload = function () {
 			const spinner = document.getElementById('loading');
