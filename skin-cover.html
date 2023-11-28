@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="[[CHARCODE]]">
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1 ,maximum-scale=1.0" />
 	<!-- ここ(RSS:URL:PURE:FULL)にRSSフィードへのURLが入ります。(FREE:TITLE:MAIN)には主タイトルが入ります。 -->
 	<link rel="alternate" type="application/rss+xml" title="[[FREE:TITLE:MAIN]]RSSフィード" href="[[RSS:URL:PURE:FULL]]">
 	<!-- OGP -->
@@ -14,7 +14,7 @@
 	<!-- 1行説明文 -->
 	<meta name="description" content="[[FREE:DESCRIPTION]]">
 
-	<!-- ファビコンのパスは適宜置き換える -->
+	<!-- ファビコン -->
 	<link rel="icon" href="favicon.ico">
 
 	<!-- new.cssの読み込み -->
@@ -30,60 +30,120 @@
 <body class="[[SITUATION:CLASS]]">
 	<header>
 		<h2><a href="[[HOME:URL:FULL]]">[[FREE:TITLE:MAIN]]</a></h2>
-		<p> [[FREE:TITLE:SUB]] </p> <small>[[FREE:DESCRIPTION]]</small>
+		<div class="icon-img">
+			<!-- 自分のアイコン画像を、cgiからの相対パスで指定して下さい。 -->
+			<img src="skin-hujitubo/hujitubo.png" alt="アイコン画像">
+		</div>
+		<p> <small>[[FREE:DESCRIPTION]]</small> </p>
+
+		<small class="hujitubo_update">最終更新日：[[INFO:LASTUPDATE]]</small>
 	</header>
-	<div class="Login-Required">[[QUICKPOST]]</div>
-	<main>
-		[[TEGALOG]]
-		<!-- ページナビゲーション -->
+
+	<div class="hujitubo_quick-post Login-Required">[[QUICKPOST]]
+
+		<!-- カスタム絵文字ピッカーのボタン -->
+		<label for="hujitubo_ce" class="hujitubo_ce_btn">
+			<i class="fa-regular fa-face-smile"></i> emojis
+		</label>
+		<input type="checkbox" id="hujitubo_ce">
+		<!-- カスタム絵文字を表示するエリア -->
+		<div class="cemojipicker"></div>
+
+	</div>
+
+	<!-- タブ型表示の実装 -->
+	<div class="hujitubo_tab_area">
+
+		<!-- タブのボタン -->
+		<input id="hujitubo_post" type="radio" name="hujitubo_tab_item" checked>
+		<label for="hujitubo_post" class="hujitubo_tab_item">Posts</label>
+
+		<input id="hujitubo_cat" type="radio" name="hujitubo_tab_item">
+		<label for="hujitubo_cat" class="hujitubo_tab_item">Category</label>
+
+		<input id="hujitubo_tag" type="radio" name="hujitubo_tab_item">
+		<label for="hujitubo_tag" class="hujitubo_tab_item">Tags</label>
+
+		<input id="hujitubo_menu" type="radio" name="hujitubo_tab_item">
+		<label for="hujitubo_menu" class="hujitubo_tab_item">Menu</label>
+
+		<!------- 中身部分の実装 ------->
+		<div class="hujitubo_tab_content" id="hujitubo_post_contants">
+			<!-- 投稿一覧 -->
+			[[TEGALOG]]
+		</div>
+
+		<div class="hujitubo_tab_content" id="hujitubo_cat_contants">
+			<div class="hujitubo_tab_disc">
+				<h3>カテゴリ</h3>
+				[[CATEGORY:TREE]]
+			</div>
+		</div>
+
+		<div class="hujitubo_tab_content" id="hujitubo_tag_contants">
+			<div class="hujitubo_tab_disc">
+				<h3>ハッシュタグ</h3>
+				[[HASHTAG:LIST]]
+			</div>
+		</div>
+
+		<!-- このあたりの内容は好みで好きに変更してください -->
+		<div class="hujitubo_tab_content" id="hujitubo_menu_contants">
+			<div class="hujitubo_tab_disc">
+				<h3>検索</h3>
+				[[SEARCHBOX:COMPLEX]]
+				<h3>フリースペース</h3>
+				[[FREESPACE]]
+				<h3>新着投稿リスト</h3>
+				[[LATESTLIST]]
+				<h3>新着画像リスト</h3>
+				[[IMAGELIST]]
+				<h3>日付リスト</h3>
+				[[DATEBOX:LIST]]
+				<h3>カレンダー</h3>
+				[[CALENDAR]]
+			</div>
+		</div>
+	</div>
+
+	<!-- ページナビゲーション -->
+	<div class="hujitubo_page-nav">
 		<div>[[NAVI:PREVNEXT]]</div>
 		<div>[[NAVI:PAGELIST]]</div>
 		<div>[[NAVI:TOPPAGE]]</div>
-	</main>
+	</div>
+
 	<aside>
-		<div>
-			<h3>検索</h3>
-			[[SEARCHBOX:COMPLEX]]
+		<!-- 一番上のメニューの左側のエリア -->
+		<div class="hujitubo_aside_wrap">
+			<a href="[[HOME:URL]]" title="トップページを表示"><i class="fa-solid fa-house"></i></a>
+
+			<!-- このあたりのエリアは、使っていないモードは削除してください -->
+			<a href="[[GALLERY:URL]]" title="ギャラリーページを表示"><i class="fa-solid fa-palette"></i></a>
+			<a href="[[PICTS:URL]]" title="画像一覧モードを表示"><i class="fa-solid fa-images"></i></a>
+			<a href="[[SITEMAP:URL]]" title="サイトマップページを表示"><i class="fa-solid fa-map"></i></a>
+			<a href="[[RSS:URL]] " title="RSSフィードを表示"><i class="fa-solid fa-rss"></i></a>
+
+			<a href="[[ADMIN:URL]]" title="管理画面へ"><i class="fa-solid fa-screwdriver-wrench"></i></a>
 		</div>
-		<div>
-			<h3>フリースペース</h3>
-			[[FREESPACE]]
+
+		<!-- 一番上のメニューの右側のエリア -->
+		<div class="hujitubo_aside_wrap">
+			<span id="toggle-theme-button"></span>
+			<a href="#top" title="上に移動"><i class="fa-solid fa-angles-up"></i></a>
+			<a href="#hujitubo_bottom" title="下に移動"><i class="fa-solid fa-angles-down"></i></a>
 		</div>
-		<div>
-			<h3>新着投稿リスト</h3>
-			[[LATESTLIST]]
-		</div>
-		<div>
-			<h3>新着画像リスト</h3>
-			[[IMAGELIST]]
-		</div>
-		<div>
-			<h3>日付リスト</h3>
-			[[DATEBOX:LIST]]
-		</div>
-		<div>
-			<h3>ハッシュタグ</h3>
-			[[HASHTAG:LIST]]
-		</div>
-		<div>
-			<h3>カテゴリ</h3>
-			[[CATEGORY:TREE]]
-		</div>
-		<div>
-			<h3>カレンダー</h3>
-			[[CALENDAR]]
-		</div>
-		<div> <small> <a href="[[NEWPOST:URL]] ">新規投稿</a>/
-				<a href="[[ADMIN:URL]]  ">管理画面</a>/
-				<a href="[[GALLERY:URL]] ">ギャラリー</a>/
-				<a href="[[RSS:URL]] ">RSS</a> </small> </div>
 	</aside>
+
 	<footer>
+		<!-- 注意事項などを自由に書いてください。 -->
+		<p class="hujitubo_fotter-note">例）当サイトの内容を複製することを禁じます。</p>
+
 		<!-- Copyright部分はサークル名やサイト名、管理人の名前、西暦などを適切に置き換えてください。 -->
-		<p>Copyright たこつぼくらぶ 2023.</p>
+		<p>Copyright [[FREE:TITLE:MAIN]] [[INFO:LASTUPDATE:Y]].</p>
 
-
-		<p><small>[[VERSION:NEWTAB]] .</small></p>
+		<!-- このタグはてがろぐの必須タグのため削除しないでください -->
+		<p><small>[[VERSION:NEWTAB]].</small></p>
 		<p>
 			<small>
 				Theme by <a href="https://takotubo.10rino.net" rel="noreferrer noopener">Takotubo Club</a>.
@@ -91,6 +151,8 @@
 		</p>
 		<p>
 			<small>
+				<!-- 使っているCSSやアイコンフォントのクレジットです。
+		別のライブラリに置き換えた場合は変更したり削除したりしてください -->
 				Thanks by
 				<a href="https://newcss.net" rel="noreferrer noopener">new.css</a>,
 				<a href="https://fontawesome.com" rel="noreferrer noopener">Font Awesome</a>,
@@ -99,30 +161,187 @@
 		</p>
 	</footer>
 
-	<!-- jQuery 読み込み -->
+
+	<!---------------------------- ここからスプリクトの読み込み
+		使ってないものは削除してOK　使うものは削除しないでください ---------------------------->
+	<!-- jQuery 読み込み（必須） -->
 	<script src="https://code.jquery.com/jquery-3.7.0.js"
 		integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous">
 		</script>
 
-	<!-- 記事引用のscript -->
-	[[INCLUDE:asset/quote.html]]
+	<!-- カスタム絵文字ピッカー
+	基本的に変更しなくていいですが、phpファイルの場所を移動した場合は適宜パスの変更をしてください -->
+	<script>
+		$(document).ready(function () {
+			// サーバーサイドのスクリプトから画像ファイルリストを取得
+			$.ajax({
+				url: 'skin-hujitubo/get_cemoji.php', // tegalog.cgiからの相対パスを指定
+				dataType: 'json',
+				success: function (data) {
+					// 取得したファイルリストを処理
+					$.each(data, function (index, filename) {
 
-	<!-- カスタム絵文字、画像をスキン側で差し込みやすくする -->
-	[[INCLUDE:asset/codecopy.html]]
+						// 拡張子を取り除いたファイル名を生成
+						var fileBaseName = filename.split('.').slice(0, -1).join('.');
+
+						// 画像の<img>要素を作成し、alt属性を設定して<div class="cemojipicker">に追加
+						var imgSrc = 'emoji/' + filename;
+
+						// alt属性を指定された形式に設定
+						var altText = '[:' + fileBaseName + ':]';
+
+						var img = $("<img>").attr("src", imgSrc).attr("alt", altText);
+						img.appendTo(".cemojipicker");
+
+						// 画像をクリックしたときの処理
+						img.click(function () {
+							// クリックされた画像のalt属性の値を取得
+							var altText = $(this).attr("alt");
+
+							// <textarea class="tegalogpost">のDOM要素を取得
+							var textarea = document.querySelector(".tegalogpost");
+
+							// カーソルの位置を取得
+							var cursorPos = textarea.selectionStart;
+
+							// テキストエリアの内容を取得
+							var text = textarea.value;
+
+							// カーソル位置に新しいテキストを挿入
+							var newText = text.slice(0, cursorPos) + altText + text.slice(cursorPos);
+
+							// テキストエリアに新しいテキストを設定
+							textarea.value = newText;
+						});
+					});
+				}
+			});
+		});
+	</script>
+
+	<!-- 記事引用のscript -->
+	<script>
+
+		$(document).ready(function () {
+			// 記事リンクに標準で付加されているpostidlinkをトリガーにする
+			$('.postidlink').each(function (index) {
+				var linkElement = $(this);
+				// そのあとに<div class="qpost-番号">を加える。
+				// qpost=QuotePostです。クラス部分はお好みで変更可
+				var newDivElement = $('<div>').addClass('qpost-' + (index + 1));
+
+				// リンク要素の後に新しい div 要素を挿入
+				linkElement.after(newDivElement);
+
+				var linkURL = linkElement.attr('href');
+
+				$.ajax({
+					url: linkURL,
+					type: 'GET',
+					dataType: 'html',
+					success: function (html) {
+						var tempDiv = $('<div>').html(html);
+
+						// リンク先から取得した内容から<div class="comment">のテキストを抽出
+						// comment以外のクラス指定の場合はfind('.comment')の部分を書き換え
+						// プレーンテキストで表示する場合は.html()を.text()に書き換え
+						var commentContent = tempDiv.find('.comment').html();
+
+						// 加える文字列を制限して350文字までに切り詰め
+						var maxLength = 350;
+						var limitedContent = commentContent.length > maxLength ?
+							// 省略する場合は省略記号...を追加
+							commentContent.substring(0, maxLength) + '...' :
+							commentContent;
+
+						// 新しい div 要素にリンク先の内容を追加
+						// プレーンテキストで表示する場合は.html(略)を.text(略)に書き換え
+						newDivElement.html(limitedContent);
+					},
+					error: function (error) {
+						console.error('エラー:', error);
+					}
+				});
+			});
+		});
+	</script>
 
 
 	<!-- ダークモードとライトモードの切り替え -->
-	[[INCLUDE:asset/darkmode.html]]
+	<script>
+		// Check if the user prefers dark mode
+		const prefersDarkMode = window.matchMedia(
+			"(prefers-color-scheme: dark)",
+		).matches;
 
+		// Set the initial theme based on user preference
+		const initialTheme = prefersDarkMode ? "dark" : "light";
+
+		// Check for saved theme preference or use the initial theme
+		const savedTheme = localStorage.getItem("theme");
+		const theme = savedTheme || initialTheme;
+
+		// Apply the theme to the HTML element
+		document.documentElement.setAttribute("data-theme", theme);
+
+		// Function to toggle between light and dark mode
+		function toggleTheme() {
+			const currentTheme =
+				document.documentElement.getAttribute("data-theme");
+			const newTheme = currentTheme === "light" ? "dark" : "light";
+
+			// Save the theme preference to localStorage
+			localStorage.setItem("theme", newTheme);
+
+			// Apply the new theme to the HTML element
+			document.documentElement.setAttribute("data-theme", newTheme);
+		}
+
+		// Event listener for a button click to toggle the theme
+		document
+			.getElementById("toggle-theme-button")
+			.addEventListener("click", toggleTheme);
+	</script>
+	
 	<!-- ローディング画面 -->
-	[[INCLUDE:asset/load.html]]
+	<div id="loading">
+		<div class="load_anime"></div>
+	</div>
+	<script>
+		window.onload = function () {
+			const spinner = document.getElementById('loading');
+			spinner.classList.add('loaded');
+		}
+	</script>
 
 	<!-- クリップボードにURLをコピーする -->
-	[[INCLUDE:asset/clipboad.html]]
+	<script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
+	<script>
+		new ClipboardJS('.post-share');
+
+		const clipboard = new ClipboardJS('.post-share');
+
+		const btns = document.querySelectorAll('.post-share');
+
+		for (let i = 0; i < btns.length; i++) {
+			btns[i].addEventListener('mouseleave', clearTooltip);
+		}
+		function clearTooltip(e) {
+			e.currentTarget.setAttribute('class', 'post-share');
+		}
+
+		function showTooltip(elem) {
+			elem.setAttribute('class', 'post-share tooltip');
+		}
+
+		clipboard.on('success', function (e) {
+			showTooltip(e.trigger);
+		});
+	</script>
 
 	<!-- lightbox以外を使う場合ここを書き換える -->
 	[[JS:LIGHTBOX]]
-
+	<div id="hujitubo_bottom"></div>
 </body>
 
 </html>
